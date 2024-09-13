@@ -5,14 +5,22 @@ public class Vacina {
     private Data data;
     private TipoVacina tipo;
 
+    private int dose;
+
     public Vacina() {
         this.data = new Data();
         this.tipo = TipoVacina.UNDEFINED;
+        this.dose = 0;
     }
 
-    public Vacina(Data data, TipoVacina tipo) {
+    public Vacina(TipoVacina tipo, Data data, int dose) {
         this.data = data;
         this.tipo = tipo;
+        this.dose = dose;
+    }
+
+    public Vacina(TipoVacina tipo, Data data) {
+        this(tipo, data, 1);
     }
 
     @Override
@@ -24,6 +32,7 @@ public class Vacina {
 
         if (data != vacina.getData()) return false;
         if (getTipo() != vacina.getTipo()) return false;
+        //todo; refatorar colocando o getDose
 
         return Objects.equals(data, vacina.data) && tipo == vacina.tipo;
     }
@@ -32,6 +41,7 @@ public class Vacina {
     public int hashCode() {
         int result = data != null ? data.hashCode() : 0;
         result = 31 * result + tipo.hashCode();
+        //todo: refatorar colocando o dose.hashcode
         return result;
     }
 

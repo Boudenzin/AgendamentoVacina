@@ -30,6 +30,7 @@ public class Paciente {
 
     @Override
     public int hashCode() {
+        //todo: fazer o hash code
         return Objects.hash(cartaoSUS, nome, idade);
     }
 
