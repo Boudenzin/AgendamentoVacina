@@ -1,4 +1,10 @@
 package gui;
 
-public class AgendamentoVacinaUBSPrimaveraGUI {
+import javax.swing.*;
+
+public class AgendamentoVacinaUBSPrimaveraGUI extends JFrame {
+
+    public AgendamentoVacinaUBSPrimaveraGUI() {
+
+    }
 }
