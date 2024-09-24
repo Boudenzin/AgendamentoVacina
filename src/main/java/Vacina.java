@@ -3,10 +3,8 @@ import java.util.Objects;
 public class Vacina {
 
     private Data data;
-
     private Hora hora;
     private TipoVacina tipo;
-
     private int dose;
 
     public Vacina() {

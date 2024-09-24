@@ -1,3 +1,6 @@
+import exceptions.PacienteJaCadastradoException;
+import exceptions.PacienteNaoEncontradoException;
+
 import java.util.Map;
 import java.util.HashMap;
 
@@ -5,12 +8,27 @@ public class AgendamentoVacinaUBSPrimavera implements AgendamentoVacinaInterface
 
     private Map<String, Paciente> pacientes;
 
-    
+    public AgendamentoVacinaUBSPrimavera() {
+        this.pacientes = new HashMap<>();
+    }
 
-    //fazer um builder pattern para colocar paciente, vacina, data, hora
+    public void cadastrarPaciente(String cartaoSUS, Paciente paciente) throws PacienteJaCadastradoException {
+        if (pacientes.containsKey(cartaoSUS)) {
+            throw new PacienteJaCadastradoException("Paciente já cadastrado");
+        }
+        pacientes.put(cartaoSUS, paciente);
 
-    public boolean agendarVacina(Paciente paciente, Vacina vacina) {
-        return false; //TODO
+    }
+
+    public void cadastrarVacina(Paciente paciente, Vacina vacina) throws PacienteNaoEncontradoException {
+        if (!pacientes.containsKey(paciente.getCartaoSUS())) {
+            throw new PacienteNaoEncontradoException("Paciente não pode ser encontrado");
+        }
+        Paciente p = pacientes.get(paciente.getCartaoSUS());
+        p.adicionarVacina(vacina);
+    }
+    public boolean agendarVacina(Paciente paciente, Vacina vacina) { return false; //TODO
+
     }
 
     public Paciente pesquisarPaciente(Paciente paciente) {

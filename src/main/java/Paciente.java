@@ -17,7 +17,7 @@ public class Paciente {
         this.cartaoSUS = cartaoSUS;
         this.nome = nome;
         this.idade = idade;
-        this.vacina = new ArrayList<>();
+        this.vacinas = new ArrayList<>();
     }
 
     @Override
@@ -60,5 +60,11 @@ public class Paciente {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    public void adicionarVacina(Vacina vacina) {
+        this.vacinas.add(vacina);
+
+
     }
 }

@@ -1,5 +1,11 @@
+import exceptions.PacienteJaCadastradoException;
+import exceptions.PacienteNaoEncontradoException;
+
 public interface AgendamentoVacinaInterface {
 
+    public void cadastrarPaciente(String cartaoSUS, Paciente paciente) throws PacienteJaCadastradoException;
+
+    public void cadastrarVacina(Paciente paciente, Vacina vacina) throws PacienteNaoEncontradoException;
     public boolean agendarVacina(Paciente paciente, Vacina vacina);
 
     public boolean removerVacinaDePaciente(Paciente paciente, Vacina vacina);
