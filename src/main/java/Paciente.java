@@ -1,4 +1,6 @@
 import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Paciente {
 
@@ -8,11 +10,14 @@ public class Paciente {
 
     private int idade;
 
+    private List vacinas;
+
     public Paciente(String cartaoSUS, String nome, int idade) {
 
         this.cartaoSUS = cartaoSUS;
         this.nome = nome;
         this.idade = idade;
+        this.vacina = new ArrayList<>();
     }
 
     @Override
