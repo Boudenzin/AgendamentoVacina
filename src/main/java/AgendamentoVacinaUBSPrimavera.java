@@ -1,7 +1,11 @@
 import java.util.Map;
+import java.util.HashMap;
+
 public class AgendamentoVacinaUBSPrimavera implements AgendamentoVacinaInterface{
 
-    private Map<Paciente, Vacina[]> agenda;
+    private Map<String, Paciente> pacientes;
+
+    
 
     //fazer um builder pattern para colocar paciente, vacina, data, hora
 
