@@ -17,7 +17,7 @@ public class Paciente {
         this.cartaoSUS = cartaoSUS;
         this.nome = nome;
         this.idade = idade;
-        this.vacinas = new ArrayList<>();
+        this.vacinas = new ArrayList<Vacina>();
     }
 
     @Override
