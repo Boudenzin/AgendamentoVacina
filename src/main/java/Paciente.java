@@ -10,14 +10,14 @@ public class Paciente {
 
     private int idade;
 
-    private List vacinas;
+    private List<Vacina> vacinas;
 
     public Paciente(String cartaoSUS, String nome, int idade) {
 
         this.cartaoSUS = cartaoSUS;
         this.nome = nome;
         this.idade = idade;
-        this.vacinas = new ArrayList<Vacina>();
+        this.vacinas = new ArrayList<>();
     }
 
     @Override
