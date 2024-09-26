@@ -1,4 +1,4 @@
-package exceptions;
+package br.ufpb.dcx.romildo.vacinacao.exceptions;
 
 public class VacinaNaoEncontradaException extends Exception {
     public VacinaNaoEncontradaException(String msg) {

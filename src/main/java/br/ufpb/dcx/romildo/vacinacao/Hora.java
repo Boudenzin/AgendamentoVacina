@@ -1,3 +1,5 @@
+package br.ufpb.dcx.romildo.vacinacao;
+
 import java.util.Objects;
 
 public class Hora {
