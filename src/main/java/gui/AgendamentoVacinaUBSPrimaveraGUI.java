@@ -7,10 +7,10 @@ import java.awt.*;
 import controllers.*;
 public class AgendamentoVacinaUBSPrimaveraGUI extends JFrame {
 
-    ImageIcon zeGotinha = new ImageIcon("./imgs/ZeGotinha.gif");
-    JLabel linha1, linha2;
-    ImageIcon fotoPrincipal = zeGotinha;
-    JMenuBar barraDeMenu = new JMenuBar();
+    private ImageIcon zeGotinha = new ImageIcon("./imgs/ZeGotinha.gif");
+    private JLabel linha1, linha2;
+    private ImageIcon fotoPrincipal = zeGotinha;
+    private JMenuBar barraDeMenu = new JMenuBar();
 
     public AgendamentoVacinaUBSPrimaveraGUI() {
 
