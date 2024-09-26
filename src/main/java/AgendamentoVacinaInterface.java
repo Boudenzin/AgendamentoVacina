@@ -1,26 +1,28 @@
 import exceptions.PacienteJaCadastradoException;
 import exceptions.PacienteNaoEncontradoException;
+import exceptions.VacinaNaoEncontradaException;
+
+import java.util.List;
 
 public interface AgendamentoVacinaInterface {
 
     public void cadastrarPaciente(String cartaoSUS, Paciente paciente) throws PacienteJaCadastradoException;
 
-    public void cadastrarVacina(Paciente paciente, Vacina vacina) throws PacienteNaoEncontradoException;
-    public boolean agendarVacina(Paciente paciente, Vacina vacina);
+    public void agendarVacina(String cartaoSUS, Vacina vacina) throws PacienteNaoEncontradoException;
 
-    public boolean removerVacinaDePaciente(Paciente paciente, Vacina vacina);
+    public void removerVacinaDePaciente(String cartaoSUS, Vacina vacina) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException;
 
-    public boolean alterarDataDeVacinaDoPaciente(Paciente paciente, Vacina vacina);
+    public void alterarDataDeVacinaDoPaciente(String cartaoSUS, Vacina vacina, Data data, Hora hora) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException;
 
-    public boolean alterarVacinaDePaciente(Paciente paciente, Vacina vacina);
+    public void alterarVacinaDePaciente(String cartaoSUS, Vacina vacinaAntiga, Vacina vacinaNova) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException;
 
-    public boolean removerPacienteDoSistema(Paciente paciente);
+    public void removerPacienteDoSistema(String cartaoSUS) throws PacienteNaoEncontradoException;
 
-    public Paciente pesquisarPaciente(Paciente paciente);
-    public Vacina pesquisarTipoVacina(TipoVacina tipo);
-    public Data pesquisarDataAgendada(Paciente paciente, Vacina vacina);
+    public Paciente pesquisarPaciente(String cartaoSUS);
 
-    public Vacina[] pesquisarTodasAsVacinasDoPaciente(Paciente paciente);
+    public Data pesquisarDataAgendada(String cartaoSUS, Vacina vacina, Data data) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException;
+
+    public List<Vacina> pesquisarTodasAsVacinasDoPaciente(String cartaoSUS) throws PacienteNaoEncontradoException;
 
 
 }

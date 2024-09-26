@@ -1,3 +1,5 @@
+import exceptions.VacinaNaoEncontradaException;
+
 import java.util.Objects;
 import java.util.List;
 import java.util.ArrayList;
@@ -64,7 +66,48 @@ public class Paciente {
 
     public void adicionarVacina(Vacina vacina) {
         this.vacinas.add(vacina);
+    }
 
+    public void removerVacina(Vacina vacina) throws VacinaNaoEncontradaException{
+        if (!this.vacinas.contains(vacina)) {
+            throw new VacinaNaoEncontradaException("Vacina não está no sistema");
+        }
+        this.vacinas.remove(vacina);
+    }
 
+    public void alterarDataDeVacina(Vacina vacina, Data data) throws VacinaNaoEncontradaException{
+        if (!this.vacinas.contains(vacina)) {
+            throw new VacinaNaoEncontradaException("Vacina não está no sistema");
+        }
+        for (Vacina v : this.vacinas) {
+            if (v.equals(vacina)) {
+                vacina.setData(data);
+            }
+        }
+    }
+
+    public void alterarVacina(Vacina vacinaAntiga, Vacina vacinaNova) throws VacinaNaoEncontradaException {
+        if (!this.vacinas.contains(vacinaAntiga)) {
+            throw new VacinaNaoEncontradaException("Vacina não está no sistema");
+        }
+        this.removerVacina(vacinaAntiga);
+        this.adicionarVacina(vacinaNova);
+
+    }
+
+    public Data pesquisarDataDaVacina(Vacina vacina) throws VacinaNaoEncontradaException{
+        if (!this.vacinas.contains(vacina)) {
+            throw new VacinaNaoEncontradaException("Vacina não está no sistema");
+        }
+        for (Vacina v : this.vacinas) {
+            if (v.equals(vacina)) {
+                return vacina.getData();
+            }
+        }
+        return null;
+    }
+
+    public List<Vacina> getVacinas() {
+        return this.vacinas;
     }
 }

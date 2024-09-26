@@ -1,8 +1,10 @@
 import exceptions.PacienteJaCadastradoException;
 import exceptions.PacienteNaoEncontradoException;
+import exceptions.VacinaNaoEncontradaException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 public class AgendamentoVacinaUBSPrimavera implements AgendamentoVacinaInterface{
 
@@ -20,46 +22,81 @@ public class AgendamentoVacinaUBSPrimavera implements AgendamentoVacinaInterface
 
     }
 
-    public void cadastrarVacina(Paciente paciente, Vacina vacina) throws PacienteNaoEncontradoException {
-        if (!pacientes.containsKey(paciente.getCartaoSUS())) {
+    public void agendarVacina(String cartaoSUS, Vacina vacina) throws PacienteNaoEncontradoException {
+        if (!pacientes.containsKey(cartaoSUS)) {
             throw new PacienteNaoEncontradoException("Paciente não pode ser encontrado");
         }
-        Paciente p = pacientes.get(paciente.getCartaoSUS());
+        Paciente p = pesquisarPaciente(cartaoSUS);
         p.adicionarVacina(vacina);
     }
-    public boolean agendarVacina(Paciente paciente, Vacina vacina) { return false; //TODO
-
-    }
-
-    public Paciente pesquisarPaciente(Paciente paciente) {
-        return null; //TODO
-    }
-    public Vacina pesquisarTipoVacina(TipoVacina tipo) {
-        return null; //TODO
-    }
-    public Data pesquisarDataAgendada(Paciente paciente, Vacina vacina) {
-        return null; //TODO
-    }
 
 
-    public boolean removerVacinaDePaciente(Paciente paciente, Vacina vacina) {
-        return false; //TODO
+    public void removerVacinaDePaciente(String cartaoSUS, Vacina vacina) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException {
+        if (!pacientes.containsKey(cartaoSUS)) {
+            throw new PacienteNaoEncontradoException("Paciente não pode ser encontrado");
+        }
+        Paciente p = pesquisarPaciente(cartaoSUS);
+        try {
+            p.removerVacina(vacina);
+        } catch (VacinaNaoEncontradaException e) {
+            throw new VacinaNaoEncontradaException(e.getMessage());
+        }
+    }
+
+    public void alterarDataDeVacinaDoPaciente(String cartaoSUS, Vacina vacina, Data data, Hora hora) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException{
+        if (!pacientes.containsKey(cartaoSUS)) {
+            throw new PacienteNaoEncontradoException("Paciente não pode ser encontrado");
+        }
+        Paciente p = pesquisarPaciente(cartaoSUS);
+        try {
+            p.alterarDataDeVacina(vacina, data);
+        } catch (VacinaNaoEncontradaException e) {
+            throw new VacinaNaoEncontradaException(e.getMessage());
+        }
     }
 
 
-    public boolean alterarDataDeVacinaDoPaciente(Paciente paciente, Vacina vacina) {
-        return false; //TODO
+    public void alterarVacinaDePaciente(String cartaoSUS, Vacina vacinaAntiga, Vacina vacinaNova) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException{
+        if (!pacientes.containsKey(cartaoSUS)) {
+            throw new PacienteNaoEncontradoException("Paciente não pode ser encontrado");
+        }
+        Paciente p = pesquisarPaciente(cartaoSUS);
+        try {
+            p.alterarVacina(vacinaAntiga, vacinaNova);
+        } catch (VacinaNaoEncontradaException e) {
+            throw new VacinaNaoEncontradaException(e.getMessage());
+        }
     }
 
-    public boolean alterarVacinaDePaciente(Paciente paciente, Vacina vacina) {
-        return false; //TODO
+    public void removerPacienteDoSistema(String cartaoSUS) throws PacienteNaoEncontradoException{
+        if (!pacientes.containsKey(cartaoSUS)) {
+            throw new PacienteNaoEncontradoException("Paciente não pode ser encontrado");
+        }
+        this.pacientes.remove(cartaoSUS);
     }
 
-    public boolean removerPacienteDoSistema(Paciente paciente) {
-        return false; //TODO
+    public Paciente pesquisarPaciente(String cartaoSUS) {
+        return pacientes.get(cartaoSUS);
+    }
+    public Data pesquisarDataAgendada(String cartaoSUS, Vacina vacina, Data data) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException{
+        if (!pacientes.containsKey(cartaoSUS)) {
+            throw new PacienteNaoEncontradoException("Paciente não pode ser encontrado");
+        }
+        Paciente p = pesquisarPaciente(cartaoSUS);
+        try {
+            return p.pesquisarDataDaVacina(vacina);
+        } catch (VacinaNaoEncontradaException e) {
+            throw new VacinaNaoEncontradaException(e.getMessage());
+        }
     }
 
-    public Vacina[] pesquisarTodasAsVacinasDoPaciente(Paciente paciente) {
-        return null; //TODO
+
+    public List<Vacina> pesquisarTodasAsVacinasDoPaciente(String cartaoSUS) throws PacienteNaoEncontradoException{
+        if (!pacientes.containsKey(cartaoSUS)) {
+            throw new PacienteNaoEncontradoException("Paciente não pode ser encontrado");
+        }
+        Paciente p = pesquisarPaciente(cartaoSUS);
+        return p.getVacinas();
     }
+
 }
