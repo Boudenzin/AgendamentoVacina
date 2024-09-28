@@ -20,6 +20,17 @@ public class Vacina {
         this.dose = dose;
     }
 
+    public Vacina(String tipo, int dose, Data data, Hora hora) throws IllegalArgumentException{
+        this.data = data;
+        this.hora = hora;
+        this.dose = dose;
+        try {
+            this.tipo = TipoVacina.valueOf(tipo);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Tipo de vacina inválido: " + tipo);
+        }
+    }
+
     public Vacina(TipoVacina tipo, Data data, Hora hora) {
         this(tipo, 1, data, hora);
     }

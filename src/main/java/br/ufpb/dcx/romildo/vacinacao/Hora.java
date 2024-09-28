@@ -1,5 +1,7 @@
 package br.ufpb.dcx.romildo.vacinacao;
 
+import br.ufpb.dcx.romildo.vacinacao.exceptions.HoraNaoCadastradaException;
+
 import java.util.Objects;
 
 public class Hora {
@@ -10,6 +12,16 @@ public class Hora {
     public Hora(int hora, int minutos) {
         this.hora = hora;
         this.minutos = minutos;
+    }
+
+    public Hora(String hora) throws HoraNaoCadastradaException {
+        try {
+            String[] horaFormatada = hora.split("/");
+            this.hora = Integer.parseInt(horaFormatada[0]);
+            this.minutos = Integer.parseInt(horaFormatada[1]);
+        } catch (NumberFormatException e) {
+            throw new HoraNaoCadastradaException("Hora não foi inserida corretamente");
+        }
     }
 
     public Hora() {
