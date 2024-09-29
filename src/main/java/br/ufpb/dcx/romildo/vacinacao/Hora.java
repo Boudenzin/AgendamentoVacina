@@ -45,4 +45,8 @@ public class Hora {
         //todo: fazer o hashcode
         return Objects.hash(hora, minutos);
     }
+    @Override
+    public String toString() {
+        return hora + ":" + minutos;
+    }
 }

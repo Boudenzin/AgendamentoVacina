@@ -112,4 +112,33 @@ public class Paciente {
     public List<Vacina> getVacinas() {
         return this.vacinas;
     }
+
+
+    public StringBuilder mostrarTodasAsVacinas() {
+        StringBuilder saida = new StringBuilder();
+
+        for(Vacina vacina : this.vacinas) {
+            saida.append(vacina.toString()).append("\n");
+        }
+
+        return saida;
+    }
+
+    public Vacina pesquisarVacinaPeloTipoEDose(String tipo, int dose) throws VacinaNaoEncontradaException{
+        for (Vacina v : this.vacinas) {
+            if (v.getTipo().equals(TipoVacina.valueOf(tipo))) {
+                return v;
+            }
+        }
+        throw new VacinaNaoEncontradaException("Vacina não foi encontrada no sistema");
+
+    }
+    @Override
+    public String toString() {
+        return String.format("""
+                As vacinas do paciente %s de cartão %s e de idade %02d são
+                
+                %s
+                """, this.nome, this.cartaoSUS, this.idade, this.mostrarTodasAsVacinas());
+    }
 }

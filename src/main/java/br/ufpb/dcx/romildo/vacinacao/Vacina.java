@@ -80,4 +80,8 @@ public class Vacina {
     public Hora getHora() {return this.hora;}
 
     public void setHora(int hora, int minutos) {this.hora = new Hora(hora, minutos);}
+    @Override
+    public String toString() {
+        return "Tipo: " + tipo + "Dose: " + dose + "Data: " + data.toString() + " " + hora.toString();
+    }
 }

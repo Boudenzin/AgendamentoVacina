@@ -28,5 +28,9 @@ public class Data {
             throw new DataNaoCadastradaException("Data não foi inserida corretamente");
         }
     }
+    @Override
+    public String toString() {
+        return dia + "/" + mes + "/" + ano;
+    }
 
 }

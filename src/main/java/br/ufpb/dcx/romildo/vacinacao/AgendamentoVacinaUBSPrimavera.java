@@ -45,12 +45,13 @@ public class AgendamentoVacinaUBSPrimavera implements AgendamentoVacinaInterface
         }
     }
 
-    public void alterarDataDeVacinaDoPaciente(String cartaoSUS, Vacina vacina, Data data, Hora hora) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException{
+    public void alterarDataDeVacinaDoPaciente(String cartaoSUS, String tipo, int dose, Data data, Hora hora) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException{
         if (!pacientes.containsKey(cartaoSUS)) {
             throw new PacienteNaoEncontradoException("br.ufpb.dcx.romildo.vacinacao.Paciente não pode ser encontrado");
         }
         Paciente p = pesquisarPaciente(cartaoSUS);
         try {
+            Vacina vacina = p.pesquisarVacinaPeloTipoEDose(tipo, dose);
             p.alterarDataDeVacina(vacina, data);
         } catch (VacinaNaoEncontradaException e) {
             throw new VacinaNaoEncontradaException(e.getMessage());
@@ -100,5 +101,6 @@ public class AgendamentoVacinaUBSPrimavera implements AgendamentoVacinaInterface
         Paciente p = pesquisarPaciente(cartaoSUS);
         return p.getVacinas();
     }
+
 
 }

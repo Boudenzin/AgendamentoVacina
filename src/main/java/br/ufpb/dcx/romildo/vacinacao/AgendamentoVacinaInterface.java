@@ -14,7 +14,7 @@ public interface AgendamentoVacinaInterface {
 
     public void removerVacinaDePaciente(String cartaoSUS, Vacina vacina) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException;
 
-    public void alterarDataDeVacinaDoPaciente(String cartaoSUS, Vacina vacina, Data data, Hora hora) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException;
+    public void alterarDataDeVacinaDoPaciente(String cartaoSUS, String tipo, int dose, Data data, Hora hora) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException;
 
     public void alterarVacinaDePaciente(String cartaoSUS, Vacina vacinaAntiga, Vacina vacinaNova) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException;
 
