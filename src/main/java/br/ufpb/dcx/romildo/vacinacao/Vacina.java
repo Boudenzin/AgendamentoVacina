@@ -20,17 +20,6 @@ public class Vacina {
         this.dose = dose;
     }
 
-    public Vacina(String tipo, int dose, Data data, Hora hora) throws IllegalArgumentException{
-        this.data = data;
-        this.hora = hora;
-        this.dose = dose;
-        try {
-            this.tipo = TipoVacina.valueOf(tipo);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Tipo de vacina inválido: " + tipo);
-        }
-    }
-
     public Vacina(TipoVacina tipo, Data data, Hora hora) {
         this(tipo, 1, data, hora);
     }
@@ -80,6 +69,14 @@ public class Vacina {
     public Hora getHora() {return this.hora;}
 
     public void setHora(int hora, int minutos) {this.hora = new Hora(hora, minutos);}
+
+    public boolean ehDaData(Data dataAnalisada) {
+        return this.data.equals(dataAnalisada);
+    }
+
+    public boolean ehDaHora(Hora horaAnalisada) {
+        return this.hora.equals(horaAnalisada);
+    }
     @Override
     public String toString() {
         return "Tipo: " + tipo + "Dose: " + dose + "Data: " + data.toString() + " " + hora.toString();

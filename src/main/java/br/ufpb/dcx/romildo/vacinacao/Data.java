@@ -2,6 +2,8 @@ package br.ufpb.dcx.romildo.vacinacao;
 
 import br.ufpb.dcx.romildo.vacinacao.exceptions.DataNaoCadastradaException;
 
+import java.util.Objects;
+
 public class Data {
 
     private int dia;
@@ -18,16 +20,19 @@ public class Data {
         this.ano = ano;
     }
 
-    public Data(String data) throws DataNaoCadastradaException{
-        try {
-            String[] dataFormatada = data.split("/");
-            this.dia = Integer.parseInt(dataFormatada[0]);
-            this.mes = Integer.parseInt(dataFormatada[1]);
-            this.ano = Integer.parseInt(dataFormatada[2]);
-        } catch (NumberFormatException e) {
-            throw new DataNaoCadastradaException("Data não foi inserida corretamente");
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Data data = (Data) o;
+        return dia == data.dia && mes == data.mes && ano == data.ano;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dia, mes, ano);
+    }
+
     @Override
     public String toString() {
         return dia + "/" + mes + "/" + ano;

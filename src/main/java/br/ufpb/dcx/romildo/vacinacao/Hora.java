@@ -14,15 +14,6 @@ public class Hora {
         this.minutos = minutos;
     }
 
-    public Hora(String hora) throws HoraNaoCadastradaException {
-        try {
-            String[] horaFormatada = hora.split("/");
-            this.hora = Integer.parseInt(horaFormatada[0]);
-            this.minutos = Integer.parseInt(horaFormatada[1]);
-        } catch (NumberFormatException e) {
-            throw new HoraNaoCadastradaException("Hora não foi inserida corretamente");
-        }
-    }
 
     public Hora() {
         this(0,0);

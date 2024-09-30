@@ -4,6 +4,8 @@ import br.ufpb.dcx.romildo.vacinacao.exceptions.PacienteJaCadastradoException;
 import br.ufpb.dcx.romildo.vacinacao.exceptions.PacienteNaoEncontradoException;
 import br.ufpb.dcx.romildo.vacinacao.exceptions.VacinaNaoEncontradaException;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface AgendamentoVacinaInterface {
@@ -20,9 +22,9 @@ public interface AgendamentoVacinaInterface {
 
     public void removerPacienteDoSistema(String cartaoSUS) throws PacienteNaoEncontradoException;
 
-    public Paciente pesquisarPaciente(String cartaoSUS);
+    public Paciente pesquisarPaciente(String cartaoSUS) throws PacienteNaoEncontradoException;
 
-    public Data pesquisarDataAgendada(String cartaoSUS, Vacina vacina, Data data) throws PacienteNaoEncontradoException, VacinaNaoEncontradaException;
+    public List<Vacina> pesquisarDataAgendada(String cartaoSUS, String data);
 
     public List<Vacina> pesquisarTodasAsVacinasDoPaciente(String cartaoSUS) throws PacienteNaoEncontradoException;
 

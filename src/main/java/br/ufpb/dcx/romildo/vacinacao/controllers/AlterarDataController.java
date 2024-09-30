@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 
 public class AlterarDataController implements ActionListener {
 
-    private AgendamentoVacinaInterface sistema;
+    private AgendamentoVacinaUBSPrimavera sistema;
     private JFrame janelaPrincipal;
-    public AlterarDataController(AgendamentoVacinaInterface sistema, JFrame janela) {
+    public AlterarDataController(AgendamentoVacinaUBSPrimavera sistema, JFrame janela) {
         this.sistema = sistema;
         this.janelaPrincipal = janela;
     }
@@ -19,7 +19,7 @@ public class AlterarDataController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            String cartaoSUS = JOptionPane.showInputDialog(janelaPrincipal, "Qual o nome do aniversariante?", "Alterar Data", JOptionPane.INFORMATION_MESSAGE);
+            String cartaoSUS = JOptionPane.showInputDialog(janelaPrincipal, "Qual o cartão do SUS do paciente", "Alterar Data", JOptionPane.INFORMATION_MESSAGE);
             Paciente paciente = sistema.pesquisarPaciente(cartaoSUS);
 
             String tipo = JOptionPane.showInputDialog(janelaPrincipal, "Digite o tipo que quer alterar \n" + paciente.toString(), "Alterar Data", JOptionPane.INFORMATION_MESSAGE);
@@ -28,10 +28,10 @@ public class AlterarDataController implements ActionListener {
             String data = JOptionPane.showInputDialog(janelaPrincipal, "Qual a data que a vacina será agendada? \n Por favor, digite no formato: DD/MM/AAAA", "Agendar Vacina", JOptionPane.INFORMATION_MESSAGE);
             String hora = JOptionPane.showInputDialog(janelaPrincipal, "Qual a hora a ser escolhida?  Por favor, digite no formato: hora:min", "Agendar Vacina", JOptionPane.INFORMATION_MESSAGE);
 
-            Data dataFormatada = new Data(data);
-            Hora horaFormtada = new Hora(hora);
+            Data dataFormatada = sistema.dataFormatada(data);
+            Hora horaFormatada = sistema.horaFormatada(hora);
 
-            sistema.alterarDataDeVacinaDoPaciente(cartaoSUS, tipo, dose, dataFormatada, horaFormtada);
+            sistema.alterarDataDeVacinaDoPaciente(cartaoSUS, tipo, dose, dataFormatada, horaFormatada);
 
 
             JOptionPane.showMessageDialog(janelaPrincipal, "Data Alterada com Sucesso", "Alterar Data", JOptionPane.INFORMATION_MESSAGE);

@@ -72,14 +72,14 @@ public class Paciente {
 
     public void removerVacina(Vacina vacina) throws VacinaNaoEncontradaException{
         if (!this.vacinas.contains(vacina)) {
-            throw new VacinaNaoEncontradaException("br.ufpb.dcx.romildo.vacinacao.Vacina não está no sistema");
+            throw new VacinaNaoEncontradaException("Vacina não está no sistema");
         }
         this.vacinas.remove(vacina);
     }
 
     public void alterarDataDeVacina(Vacina vacina, Data data) throws VacinaNaoEncontradaException{
         if (!this.vacinas.contains(vacina)) {
-            throw new VacinaNaoEncontradaException("br.ufpb.dcx.romildo.vacinacao.Vacina não está no sistema");
+            throw new VacinaNaoEncontradaException("Vacina não está no sistema");
         }
         for (Vacina v : this.vacinas) {
             if (v.equals(vacina)) {
@@ -90,24 +90,13 @@ public class Paciente {
 
     public void alterarVacina(Vacina vacinaAntiga, Vacina vacinaNova) throws VacinaNaoEncontradaException {
         if (!this.vacinas.contains(vacinaAntiga)) {
-            throw new VacinaNaoEncontradaException("br.ufpb.dcx.romildo.vacinacao.Vacina não está no sistema");
+            throw new VacinaNaoEncontradaException("Vacina não está no sistema");
         }
         this.removerVacina(vacinaAntiga);
         this.adicionarVacina(vacinaNova);
 
     }
 
-    public Data pesquisarDataDaVacina(Vacina vacina) throws VacinaNaoEncontradaException{
-        if (!this.vacinas.contains(vacina)) {
-            throw new VacinaNaoEncontradaException("br.ufpb.dcx.romildo.vacinacao.Vacina não está no sistema");
-        }
-        for (Vacina v : this.vacinas) {
-            if (v.equals(vacina)) {
-                return vacina.getData();
-            }
-        }
-        return null;
-    }
 
     public List<Vacina> getVacinas() {
         return this.vacinas;
@@ -130,7 +119,7 @@ public class Paciente {
                 return v;
             }
         }
-        throw new VacinaNaoEncontradaException("Vacina não foi encontrada no sistema");
+        throw new VacinaNaoEncontradaException();
 
     }
     @Override
@@ -141,4 +130,28 @@ public class Paciente {
                 %s
                 """, this.nome, this.cartaoSUS, this.idade, this.mostrarTodasAsVacinas());
     }
+
+    public List<Vacina> vacinasDaData(Data data) throws VacinaNaoEncontradaException{
+        if (vacinas == null) throw new VacinaNaoEncontradaException("Nenhuma vacina foi cadastrada ainda para esse paciente");
+        List<Vacina> vacinasPesquisadas = new ArrayList<>();
+        for (Vacina v : vacinas) {
+            if (v.ehDaData(data)) {
+                vacinasPesquisadas.add(v);
+            }
+        }
+        return vacinasPesquisadas;
+    }
+
+    public List<Vacina> vacinasDaHora(Hora hora) throws VacinaNaoEncontradaException{
+        if (vacinas == null) throw new VacinaNaoEncontradaException("Nenhuma vacina foi cadastrada ainda para esse paciente");
+        List<Vacina> vacinasPesquisadas = new ArrayList<>();
+        for (Vacina v : vacinas) {
+            if (v.ehDaHora(hora)) {
+                vacinasPesquisadas.add(v);
+            }
+        }
+        return vacinasPesquisadas;
+    }
+
+
 }
