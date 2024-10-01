@@ -1,6 +1,7 @@
 package br.ufpb.dcx.romildo.vacinacao;
 
 import br.ufpb.dcx.romildo.vacinacao.exceptions.VacinaNaoEncontradaException;
+import java.lang.StringBuilder;
 
 import java.util.Objects;
 import java.util.List;
@@ -124,11 +125,11 @@ public class Paciente {
     }
     @Override
     public String toString() {
-        return String.format("""
-                As vacinas do paciente %s de cartão %s e de idade %02d são
-                
-                %s
-                """, this.nome, this.cartaoSUS, this.idade, this.mostrarTodasAsVacinas());
+        StringBuilder saidaFinal = new StringBuilder();
+        saidaFinal.append("As vacinas do paciente ").append(this.nome).append(" de cartão ")
+                .append(this.cartaoSUS).append(" e de idade ").append(this.idade).append(" são:\n")
+                .append(this.mostrarTodasAsVacinas());
+        return saidaFinal.toString();
     }
 
     public List<Vacina> vacinasDaData(Data data) throws VacinaNaoEncontradaException{
