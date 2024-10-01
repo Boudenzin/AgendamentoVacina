@@ -79,6 +79,6 @@ public class Vacina {
     }
     @Override
     public String toString() {
-        return "Tipo: " + tipo + "Dose: " + dose + "Data: " + data.toString() + " " + hora.toString();
+        return "Tipo: " + tipo + " Dose: " + dose + " Data: " + data.toString() + " " + hora.toString();
     }
 }

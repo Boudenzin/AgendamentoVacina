@@ -23,16 +23,16 @@ public class RemoverVacinaController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            String cartaoSUS = JOptionPane.showInputDialog(janelaPrincipal, "Qual o cartão do SUS do paciente?", "Alterar Vacina", JOptionPane.INFORMATION_MESSAGE);
+            String cartaoSUS = JOptionPane.showInputDialog(janelaPrincipal, "Qual o cartão do SUS do paciente?", "Remover Vacina", JOptionPane.INFORMATION_MESSAGE);
             Paciente paciente = sistema.pesquisarPaciente(cartaoSUS);
 
-            String tipo = JOptionPane.showInputDialog(janelaPrincipal, "Digite o tipo que quer alterar \n" + paciente.toString(), "Alterar Vacina", JOptionPane.INFORMATION_MESSAGE);
+            String tipo = JOptionPane.showInputDialog(janelaPrincipal, "Digite o tipo que quer alterar \n" + paciente.toString(), "Remover Vacina", JOptionPane.INFORMATION_MESSAGE);
             int dose = Integer.parseInt(JOptionPane.showInputDialog(janelaPrincipal, "Digite a dose da vacina " + tipo + "que quer alterar \n" + paciente.toString(), "Agendar Vacina", JOptionPane.INFORMATION_MESSAGE));
             Vacina vacina = sistema.pesquisarVacinaPeloTipoEDose(cartaoSUS, tipo, dose);
 
 
             sistema.removerVacinaDePaciente(cartaoSUS, vacina);
-            JOptionPane.showMessageDialog(janelaPrincipal, "Paciente Removido com Sucesso!", "Remover Paciente", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(janelaPrincipal, "Vacina Removida com Sucesso!", "Remover Vacina", JOptionPane.INFORMATION_MESSAGE);
         } catch (PacienteNaoEncontradoException | VacinaNaoEncontradaException exception) {
             JOptionPane.showMessageDialog(janelaPrincipal, exception.getMessage(), "Erro de Digitação", JOptionPane.INFORMATION_MESSAGE);
             exception.printStackTrace();

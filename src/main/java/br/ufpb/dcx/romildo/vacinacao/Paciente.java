@@ -113,9 +113,9 @@ public class Paciente {
         return saida;
     }
 
-    public Vacina pesquisarVacinaPeloTipoEDose(String tipo, int dose) throws VacinaNaoEncontradaException{
+    public Vacina pesquisarVacinaPeloTipoEDose(TipoVacina tipo, int dose) throws VacinaNaoEncontradaException{
         for (Vacina v : this.vacinas) {
-            if (v.getTipo().equals(TipoVacina.valueOf(tipo))) {
+            if (v.getTipo().equals(tipo) && v.getDose() == dose) {
                 return v;
             }
         }

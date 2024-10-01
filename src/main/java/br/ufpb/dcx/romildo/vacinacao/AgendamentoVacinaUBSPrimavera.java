@@ -57,8 +57,10 @@ public class AgendamentoVacinaUBSPrimavera implements AgendamentoVacinaInterface
             throw new PacienteNaoEncontradoException("Paciente não pode ser encontrado");
         }
         Paciente p = pesquisarPaciente(cartaoSUS);
+
         try {
-            Vacina vacina = p.pesquisarVacinaPeloTipoEDose(tipo, dose);
+            TipoVacina tipoFormatado = dicionarioTipo.get(tipo);
+            Vacina vacina = p.pesquisarVacinaPeloTipoEDose(tipoFormatado, dose);
             p.alterarDataDeVacina(vacina, data);
         } catch (VacinaNaoEncontradaException e) {
             throw new VacinaNaoEncontradaException(e.getMessage());
@@ -129,8 +131,10 @@ public class AgendamentoVacinaUBSPrimavera implements AgendamentoVacinaInterface
             throw new PacienteNaoEncontradoException("Paciente não pode ser encontrado");
         }
         Paciente p = pesquisarPaciente(cartaoSUS);
+
         try {
-            return p.pesquisarVacinaPeloTipoEDose(tipo, dose);
+            TipoVacina tipoFormatado = dicionarioTipo.get(tipo);
+            return p.pesquisarVacinaPeloTipoEDose(tipoFormatado, dose);
         } catch (VacinaNaoEncontradaException e) {
             throw new VacinaNaoEncontradaException(e.getMessage());
         }
