@@ -1,5 +1,4 @@
-### Projeto idealizado por mim feito em Java
-
+### Projeto idealizado por mim feito em java e inspirado no sistema de Recife
 O intuito principal é cadastrar pacientes e vacinas em um determinado dia e hora.
 
 Apresenta as funções de:
