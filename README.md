@@ -1,4 +1,4 @@
-## VacinaFacil
+# VacinaFacil
 
 O **VacinaFacil** é um sistema de agendamento de vacinas desenvolvido em Java, utilizando **Swing** para a interface gráfica. Inspirado no sistema de agendamento de vacinas de Recife, o projeto permite cadastrar pacientes, agendar vacinas em datas e horários específicos, e gerenciar informações de vacinação. O sistema é voltado para uso em Unidades Básicas de Saúde (UBS) e foi criado como parte do aprendizado em Java e desenvolvimento de interfaces gráficas.
 
